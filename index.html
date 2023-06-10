@@ -33,7 +33,7 @@
                                         <i class="fas fa-trash-can"></i>
                                     </button>
                                     <div class="form-check d-inline">
-                                        <input class="form-check-input form-check-inline d-flex" type="checkbox" value="" id="flexCheckDefault">
+                                        <input v-model="Task.done" @click="changeDone(index)" class="form-check-input form-check-inline d-flex" type="checkbox" value="" id="flexCheckDefault">
                                     </div>
                                 </div>
                             </li>

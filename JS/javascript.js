@@ -6,11 +6,17 @@ createApp({
 
     const newTask = ref('')
     const Tasks = ref([
-      { id: id++, text: 'Prova Stampa' },
-    ])
+      { id: id++, text: 'Prova Stampa true', done: true},
+      { id: id++, text: 'Prova Stampa false', done: false},
+    ]);
 
+    function changeDone(index) {
+      if (index >= 0 && index < Tasks.value.length) {
+        Tasks.value[index].done = !Tasks.value[index].done;
+      }
+    }
     function addTask() {
-      Tasks.value.push({ id: id++, text: newTask.value })
+      Tasks.value.push({ id: id++, text: newTask.value, done: false})
       newTask.value = ''
     }
 
@@ -22,7 +28,8 @@ createApp({
       newTask,
       Tasks,
       addTask,
-      removeTask
+      removeTask,
+      changeDone
     }
   }
 }).mount('#app')
