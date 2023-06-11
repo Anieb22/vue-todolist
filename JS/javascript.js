@@ -6,17 +6,20 @@ createApp({
 
     const newTask = ref('')
     const Tasks = ref([
-      { id: id++, text: 'Prova Stampa true', done: true},
-      { id: id++, text: 'Prova Stampa false', done: false},
+      { id: id++, text: 'Prova Stampa true', done: true, edit_enabled: false},
+      { id: id++, text: 'Prova Stampa false', done: false, edit_enabled: false},
     ]);
+
+    const editText = ref('');
 
     function changeDone(index) {
       if (index >= 0 && index < Tasks.value.length) {
         Tasks.value[index].done = !Tasks.value[index].done;
       }
-    }
+    }      
+        
     function addTask() {
-      Tasks.value.push({ id: id++, text: newTask.value, done: false})
+      Tasks.value.push({ id: id++, text: newTask.value, done: false, edit_enabled: false})
       newTask.value = ''
     }
 
@@ -24,12 +27,19 @@ createApp({
       Tasks.value = Tasks.value.filter((t) => t !== Task)
     }
 
+      function editTask(index) {
+        Tasks.value[index].edit_enabled = !Tasks.value[index].edit_enabled;
+      }
+      
     return {
       newTask,
       Tasks,
       addTask,
       removeTask,
-      changeDone
-    }
+      changeDone,
+      editTask,
+      editText
+      }
   }
+
 }).mount('#app')
