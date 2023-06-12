@@ -30,16 +30,21 @@
                                 <div v-if="Task.edit_enabled">
                                     <input v-model="Task.text" type="text">
                                 </div>                                  
-                                <div v-else> {{ Task.text }}</div>
+                                <div v-else> {{ Task.text }}
+                                    <div v-if="Task.done">
+                                        <h6 class="text-success d-inline">Completata!</h6>
+                                    </div>
+                                    <div v-else></div>
+                                </div>
                                 <div class="col-1 d-flex align-items-center flex-row-reverse">                                    
-                                    <button @click="removeTask(Task)" class="btn btn-warning ms-3">
+                                    <button @click="removeTask(Task)" class="btn btn-danger ms-3">
                                         <i class="fas fa-trash-can"></i>
                                     </button>
-                                    <button @click="editTask(index)" class="btn btn-danger ms-3" id="edit-button">
+                                    <button @click="editTask(index)" class="btn btn-warning ms-3" id="edit-button">
                                         <i class="fas fa-pen"></i>
                                       </button>                                                                           
                                     <div class="form-check d-inline">
-                                        <input v-model="Task.done" @click="changeDone(index)" class="form-check-input form-check-inline d-flex" type="checkbox" value="" id="flexCheckDefault">
+                                        <input v-model="Task.done" @click="changeDone(index)" class="form-check-input form-check-inline d-inline" type="checkbox" value="" id="flexCheckDefault">
                                     </div>
                                 </div>
                             </li>
